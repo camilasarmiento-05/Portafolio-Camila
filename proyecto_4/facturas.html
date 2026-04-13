@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura</title>
+
+<style>
+body{
+    margin:0;
+    padding:20px;
+}
+
+/* HOJA */
+.hoja{
+    width:900px;
+    margin:auto;
+    background:white;
+    padding:20px;
+}
+
+/* HEADER */
+.encabezado{
+    display:flex;
+    width:100%;
+    height:150px;
+}
+
+/* IZQUIERDA */
+.lado-izq{
+    width:40%;
+    background:#0f1720;
+    display:flex;
+    align-items:center;
+    padding-left:20px;
+
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+.logo h2{
+    color:white;
+}
+
+.logo p{
+    color:#ccc;
+    font-size:14px;
+}
+
+/* CENTRO */
+.lineas{
+    width:20%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+}
+
+.blanco{
+    width:20px;
+    height:100px;
+    background:white;
+    transform:skewX(-20deg);
+}
+
+.negro{
+    width:20px;
+    height:100px;
+    background:#0f1720;
+    transform:skewX(-20deg);
+}
+
+.naranja{
+    width:30px;
+    height:120px;
+    background:#c47a1e;
+    transform:skewX(-20deg);
+}
+
+/* DERECHA */
+.lado-der{
+    width:40%;
+    background:#0f1720;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.info-invoice h1{
+    color:#c47a1e;
+}
+
+.datos{
+    display:grid;
+    grid-template-columns: auto auto;
+    gap:5px 15px;
+    font-size:14px;
+}
+
+.datos p{
+    margin:0;
+}
+
+/* INFO */
+.info{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 0;
+}
+
+.info p{
+    font-size:18px;
+}
+
+.info h2{
+    font-size:25px;
+}
+
+.info h3{
+    color:#c47a1e;
+}
+
+/* TABLA */
+.tabla{
+    width:100%;
+    border-spacing:10px;
+}
+
+.tabla th{
+    background:#c47a1e;
+    height:40px;
+    border-radius:5px;
+    font-size:18px;
+    color:white;
+}
+
+.tabla td{
+    height:35px;
+    font-size:18px;
+    vertical-align:top;
+}
+
+/* DERECHA */
+.derecha{
+    text-align:right;
+    padding-right:10px;
+}
+
+/* FILAS GRISES */
+.gris td{
+    background:#f5f5f5;
+}
+
+/* TOTAL */
+.barra-total{
+    display:flex;
+    width:100%;
+    height:50px;
+    border-radius:5px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.total-izq{
+    width:70%;
+    background:#c47a1e;
+    display:flex;
+    align-items:center;
+    padding-left:10px;
+}
+
+.total-der{
+    width:30%;
+    background:#c47a1e;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:10px;
+}
+
+/* ABAJO */
+.abajo{
+    display:flex;
+    margin-top:20px;
+}
+
+.terminos{
+    width:70%;
+}
+
+.terminos p{
+    font-size:18px;
+}
+
+.firma{
+    width:30%;
+    text-align:center;
+}
+
+.firma img{
+    width:120px;
+    height:60px;
+    display:block;
+    margin:auto;
+}
+
+.linea{
+    width:60%;
+    height:2px;
+    background:#999;
+    margin:8px auto;
+}
+
+.firma p{
+    font-size:17px;
+    margin:2px 0;
+}
+.fbarras{
+    margin-top:25px;
+    width:100%;
+    height:28px;
+    position:relative;
+    overflow:hidden;
+}
+
+.barrafb{
+    
+    left:-10px;
+    bottom:0;
+    width:30%;
+    height:100%;
+    background:#c47a1e;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+.barrafn{
+    
+    left:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background:#0f1720;
+    clip-path: polygon(28% 0, 100% 0, 100% 100%, 30% 100%);
+
+}
+
+ .cont_boton{
+         margin-top: 30px;
+          text-align: left;
+        }
+</style>
+</head>
+
+<body>
+
+<div class="hoja">
+
+    <!-- HEADER -->
+    <div class="encabezado">
+
+        <div class="lado-izq">
+            <div class="logo">
+                <h2>COMPANY</h2>
+                <p>COMPANY TAGLINE HERE</p>
+            </div>
+        </div>
+
+        <div class="lineas">
+            <div class="blanco"></div>
+            <div class="negro"></div>
+            <div class="naranja"></div>
+        </div>
+
+        <div class="lado-der">
+            <div class="info-invoice">
+                <h1>INVOICE</h1>
+
+                <div class="datos">
+                  <p>Invoice Number :</p><p>#12345</p>
+                  <p>Account No :</p><p>123456789101</p>
+                  <p>Invoice Date :</p><p>April 05, 2020</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="info">
+        <div>
+            <h3>INVOICE TO:</h3>
+            <h2>Camila Sarmiento</h2>
+            <p>Managing Director, Company Ltd</p>
+            <p>Phone: 322 712 5528</p>
+            <p>Email: sarmientolopezcamila05@gmail.com</p>
+        </div>
+
+        <div class="derecha">
+            <h3>Payment Method</h3>
+            <p>Account No: 1234 5678 910</p>
+            <p>Account Name: Camila Sarmiento</p>
+            <p>Branch Name: XYZ</p>
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <table class="tabla">
+        <tr>
+            <th>DATE</th>
+            <th>ITEM DESCRIPTION</th>
+            <th class="derecha">PRICE</th>
+            <th class="derecha">QTY</th>
+            <th class="derecha">TOTAL</th>
+        </tr>
+
+        <tr>
+            <td>Jan 10, 2020</td>
+            <td>Businesscard Design</td>
+            <td class="derecha">$300</td>
+            <td class="derecha">2</td>
+            <td class="derecha">$600.00</td>
+        </tr>
+
+        <tr class="gris">
+            <td>Jan 10, 2020</td>
+            <td>Fruit Flyer Design</td>
+            <td class="derecha">$450</td>
+            <td class="derecha">1</td>
+            <td class="derecha">$450.00</td>
+        </tr>
+
+        <tr>
+            <td>Jan 10, 2020</td>
+            <td>Application Interface Design</td>
+            <td class="derecha">$300</td>
+            <td class="derecha">1</td>
+            <td class="derecha">$300.00</td>
+        </tr>
+
+        <tr class="gris">
+            <td>Jan 9, 2020</td>
+            <td>Theme Development</td>
+            <td class="derecha">$150</td>
+            <td class="derecha">3</td>
+            <td class="derecha">$450.00</td>
+        </tr>
+
+        <tr>
+            <td>Jan 9, 2020</td>
+            <td>Full Branding Design</td>
+            <td class="derecha">$150</td>
+            <td class="derecha">1</td>
+            <td class="derecha">$150.00</td>
+        </tr>
+
+        <tr class="gris">
+            <td>Jan 8, 2020</td>
+            <td>Creative Logo Design</td>
+            <td class="derecha">$200</td>
+            <td class="derecha">1</td>
+            <td class="derecha">$200.00</td>
+        </tr>
+    </table>
+
+    <!-- SUBTOTALES -->
+    <table class="tabla">
+        <tr>
+            <td>
+                Subtotal<br>
+                Discount<br>
+                Tax (10%)
+            </td>
+
+            <td class="derecha">
+                $3150.00<br>
+                00.00<br>
+                $315.00
+            </td>
+        </tr>
+    </table>
+
+    <!-- TOTAL -->
+    <div class="barra-total">
+        <div class="total-izq"><b>Total</b></div>
+        <div class="total-der"><b>$3465.00</b></div>
+    </div>
+
+    <!-- ABAJO -->
+    <div class="abajo">
+        <div class="terminos">
+            <p><b>Terms & Conditions:</b></p>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisting elit, sed do eismod tempor,
+            incididunt ut labore et dolore magna alloua. Ouis ipsum suspendisse ultrices grinida
+            Hisus commodo viverra mascenas accumsan lacus vel facilisis.
+            </p>
+        </div>
+
+        <div class="firma">
+            <img src="https://www.shutterstock.com/image-vector/idea-signature-starting-letter-s-260nw-2348447323.jpg">
+            <div class="linea"></div>
+            <p><b>Camila Sarmiento</b></p>
+            <p>Account manager</p>
+
+    </div>
+    </div>
+          <div class="fbarras">
+          <div class="barrafb"></div>
+          <div class="barrafn"></div>
+    </div>
+
+    </div>
+         <div class="cont_boton">
+          <a href="../index.html" class="btn-volver">Volver</a>
+    </div>
+
+</div>
+
+</body>
+</html>
