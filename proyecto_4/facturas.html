@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura</title>
+
+<style>
+
+
+body{
+    margin:0;
+    padding:20px;
+    background:#e5e5e5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.hoja{
+    width:900px;
+    margin:auto;
+    background:white;
+    
+}
+
+.logo h2{
+    color:white;
+    margin:0;
+}
+
+.logo p{
+    color:#ccc;
+    font-size:14px;
+}
+
+
+.encabezado{
+    display:flex;
+    height:180px; 
+}
+
+.lado-izq{
+    width:45%;
+    background:#0f1720;
+    display:flex;
+    align-items:center;
+    padding-left:25px;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+.lineas{
+    width:15%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px; 
+}
+
+.lineas div{
+    transform:skewX(-25deg); 
+}
+
+.blanco{
+    width:12px;
+    height:110px;
+    background:white;
+}
+
+.negro{
+    width:12px;
+    height:110px;
+    background:#0f1720;
+}
+
+.naranja{
+    width:20px;
+    height:130px;
+    background:#c47a1e;
+}
+
+
+.lado-der{
+    width:40%;
+    background:#0f1720;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.info-invoice h1{
+    color:#c47a1e;
+}
+
+.datos{
+    display:grid;
+    grid-template-columns: auto auto;
+    gap:5px 15px;
+    font-size:14px;
+}
+
+.datos p{
+    margin:0;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    padding:30px;
+    margin-top:-60px;
+ }
+
+.info p{
+    font-size:16px;
+}
+
+.info h2{
+    font-size:22px;
+}
+
+.info h3{
+    color:#c47a1e;
+}
+
+.tabla{
+    width:100%;
+    border-spacing:10px;
+    padding:0 30px;
+}
+
+.tabla th{
+    background:#c47a1e;
+    color:white;
+    padding:12px;
+}
+
+.tabla td{
+    background:white;
+    padding:10px;
+}
+.metodo{
+    margin-top:40px;
+    text-align:left;
+    padding-left:10px;
+}
+.derecha{
+    text-align:center;
+    padding-right:10px;
+
+}
+.derechaaa{
+    text-align:right;
+    padding-right:10px;
+    
+}
+.resumen td{
+    padding:4px 2px; 
+    font-size:16px;
+}
+
+.resumen tr{
+    height:4px; 
+}
+
+.gris td{
+    background:#f5f5f5;
+}
+
+.barra-total{
+    display:flex;
+    margin:20px 30px;
+    height:50px; 
+}
+
+.total-izq{
+    width:70%;
+    background:#c47a1e;
+    display:flex;
+    align-items:center;
+    padding-left:10px;
+    color:white;
+}
+
+.total-der{
+    width:30%;
+    background:#c47a1e;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:10px;
+    color:white;
+}
+
+
+.abajo{
+    display:flex;
+    padding:30px;
+}
+
+.terminos{
+    width:70%;
+    margin-right:30px; 
+}
+.terminos p{
+    font-size:16px;
+    max-width:90%;
+}
+
+.terminos p.t{
+    font-size:20px; 
+    margin-top:0;
+}
+.firma{
+    margin-left:80px;
+    text-align:center;
+}
+
+.firma p{
+    margin:5px 0; 
+}
+.firma img{
+    width:100px;
+}
+
+.linea{
+    width:100%;
+    height:2px;
+    background:#999;
+    margin:8px auto;
+}
+
+.footer{
+    display:flex;
+    height:40px;
+}
+
+.footer-naranja{
+    width:20%;
+    background:#c47a1e;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+.footer-negro{
+    width:80%;
+    background:#0f1720;
+    clip-path: polygon(4% 0, 100% 0, 100% 100%, 1% 100%);
+}
+.cont_boton{
+    margin-top:20px;
+}
+
+
+
+  
+
+        .invoice-header {
+            width: 100%;
+            display: flex;
+            background-color: transparent;
+            overflow: hidden;
+            align-items: flex-start;
+            margin:0;
+        }
+
+        .left-side {
+            flex: 1;
+            background-color: #111;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            padding-left: 130px;
+            clip-path: polygon(0% 0%, 90% 0%, 57% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .separator {
+            width: 50px;
+            background-color: #d98a4b;
+            height: 270px;
+            z-index: 3;
+            margin-right: -20px;
+            margin-left: -100px;
+            margin-top: -30px;
+            clip-path: polygon(50% 0%, 100% 0%, 40% 95%, 0% 100%);
+            transform: rotate(37deg);
+        }
+
+        .right-side {
+            flex: 2;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 20px 30px 20px 0;
+            color: white;
+            margin-left: -190px;
+            background:
+                linear-gradient(to right, transparent 38%, #d98a4b 25%) no-repeat top / 100% 25px,
+                linear-gradient(to bottom, transparent 25px, #111 10px) no-repeat;
+            clip-path: polygon(35% 0%, 10% 100%, 100% 100%, 100% 0%);
+            z-index: 2;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d98a4b;
+            border: 2px solid #d98a4b;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .logo-text h1 {
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .logo-text p {
+            font-size: 8px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .invoice-section h2 {
+            font-size: 32px;
+            color: #d98a4b;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .invoice-details {
+            margin-top: 8px;
+            font-size: 10px;
+            text-align: right;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 1px;
+        }
+
+        .detail-row strong {
+            color: white;
+        }
+
+        .detail-row span:last-child {
+            color: #bbb;
+            width: 80px;
+            text-align: left;
+        }
+</style>
+</head>
+
+<body>
+
+<div class="hoja">
+
+
+
+
+ <div class="box">
+        <header class="invoice-header">
+            <div class="left-side">
+                <div class="logo-section">
+                    <div class="logo-icon">Z</div>
+                    <div class="logo-text">
+                        <h1>COMPANY</h1>
+                        <p>Company Tagline Here</p>
+                    </div>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="right-side">
+                <div class="invoice-section">
+                    <h2>INVOICE</h2>
+                    <div class="invoice-details">
+                        <div class="detail-row">
+                            <strong>Invoice Number:</strong>
+                            <span>#123456</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Account No:</strong>
+                            <span>1234 5678 9101</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong>Invoice Date:</strong>
+                            <span>April 05, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+
+<div class="info">
+<div>
+<h3>FACTURAR A:</h3>
+<h2>Camila Sarmiento</h2>
+<p>Directora General, Empresa Ltda</p>
+<p>Teléfono: 322 712 5528</p>
+<p>Correo: sarmientolopezcamila05@gmail.com</p>
+</div>
+
+<div class="metodo">
+
+<h3>Método de pago</h3>
+<p>Número de cuenta: 1234 5678 910</p>
+<p>Nombre de cuenta: Camila Sarmiento</p>
+<p>Nombre de sucursal: XYZ</p>
+</div>
+</div>
+
+<table class="tabla">
+<tr>
+<th>FECHA</th>
+<th>DESCRIPCION DE ARTICULO</th>
+<th class="derecha">PRECIO</th>
+<th class="derecha">CANTIDAD</th>
+<th class="derecha">TOTAL</th>
+</tr>
+
+<tr>
+<td>Ene 10, 2020</td>
+<td>Diseño tarjeta de presentación</td>
+<td class="derecha">$300</td>
+<td class="derecha">2</td>
+<td class="derecha">$600.00</td>
+</tr>
+
+<tr class="gris">
+<td>Ene  10, 2020</td>
+<td>Diseño folleto de frutas</td>
+<td class="derecha">$450</td>
+<td class="derecha">1</td>
+<td class="derecha">$450.00</td>
+</tr>
+
+<tr>
+<td>Ene  10, 2020</td>
+<td>Diseño interfaz de aplicación</td>
+<td class="derecha">$300</td>
+<td class="derecha">1</td>
+<td class="derecha">$300.00</td>
+</tr>
+
+<tr class="gris">
+<td>Ene  9, 2020</td>
+<td>Desarrollo de tema</td>
+<td class="derecha">$150</td>
+<td class="derecha">3</td>
+<td class="derecha">$450.00</td>
+</tr>
+
+<tr>
+<td>Ene  9, 2020</td>
+<td>Diseño marca completo</td>
+<td class="derecha">$150</td>
+<td class="derecha">1</td>
+<td class="derecha">$150.00</td>
+</tr>
+
+<tr class="gris">
+<td>Ene  8, 2020</td>
+<td>Diseño logotipo creativo</td>
+<td class="derecha">$200</td>
+<td class="derecha">1</td>
+<td class="derecha">$200.00</td>
+</tr>
+</table>
+
+<table class="tabla resumen">
+<tr>
+<td>Subtotal:</td>
+<td class="derechaaa">$3150.00</td>
+</tr>
+
+<tr>
+<td>Descuento:</td>
+<td class="derechaaa">00.00</td>
+</tr>
+
+<tr>
+<td>Impuesto (10%):</td>
+<td class="derechaaa">$315.00</td>
+</tr>
+</table>
+
+<div class="barra-total">
+<div class="total-izq"><b>Total</b></div>
+<div class="total-der"><b>$3465.00</b></div>
+</div>
+
+<div class="abajo">
+<div class="terminos">
+<p class="t"><b>Términos y condiciones:</b></p>
+<p>
+Este documento corresponde a una factura por servicios prestados.
+El pago debe realizarse en los tiempos establecidos.
+Para cualquier duda, comuníquese con nosotros.
+</p>
+</div>
+
+<div class="firma">
+<img src="https://images.squarespace-cdn.com/content/v1/5f76cc9dcc7656467177eb4e/1603757398424-FMHXBB2GQ6XC5D5J1XYO/Stacey%2Bx%2BSignature.jpg">
+<div class="linea"></div>
+<p><b>Camila Sarmiento</b></p>
+<p>Gerente de cuentas</p>
+</div>
+</div>
+
+<div class="footer">
+<div class="footer-naranja"></div>
+<div class="footer-negro"></div>
+</div>
+
+</div>
+
+<div class="cont_boton">
+<a href="../index.html" class="btn-volver">Volver</a>
+</div>
+
+</body>
+</html>
