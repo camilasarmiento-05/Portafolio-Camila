@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comidas</title>
+
+<style>
+
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px 10px 10px;
+    color: black; 
+   
+}
+
+.comida{
+    display: flex;
+    align-content: center;
+    font-size: 15px;
+    padding: 10px 40px;
+    
+}
+.menu-navegacion a {
+    color: black;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.menu-navegacion a:hover {
+    text-decoration: underline;
+}
+
+.botones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lupa,
+.maleta {
+    border: none;
+    background-color: white;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.lupa img,
+.maleta img {
+    width: 25px;
+    height: 25px;
+}
+
+.lupa:hover,
+.maleta:hover {
+    background-color: #f0ebebe7;
+}
+
+.registro {
+  padding:10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.registro:hover {
+  background-color: #f0ebebe7;
+  text-decoration: underline;
+}
+
+
+.inicio{
+    
+    padding: 90px 50px;
+     
+}
+
+.hambre{
+  padding:5px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  border-radius: 30px;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+.hambre:hover {
+  background-color: #f0ebebe7;
+  text-decoration: underline;
+}
+
+
+.orden {
+  padding:10px 20px;
+  background-color: #93c572;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.orden:hover {
+  background-color: #689b62e7;
+  
+}
+
+.explora{
+  padding:10px 20px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  border-radius: 30px;
+  border: 1px solid #999;
+  cursor: pointer;
+  font-size: 13px;
+}
+.registro:hover {
+  background-color: #f0ebebe7;
+  text-decoration: underline;
+}
+.inicio{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:70px;
+}
+
+.iniletras{
+    width:45%;
+}
+
+.hambre{
+    padding:8px 15px;
+    border-radius:30px;
+    border:1px solid #ccc;
+    background:white;
+    margin-bottom:20px;
+}
+
+.iniletras h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.iniletras p{
+    color:gray;
+    line-height:28px;
+    margin-bottom:30px;
+}
+
+
+.orden{
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#8bc34a;
+    color:white;
+    cursor:pointer;
+}
+
+.explora{
+    padding:15px 30px;
+    border-radius:30px;
+    border:1px solid #999;
+    background:white;
+    cursor:pointer;
+}
+
+.iniimg{
+    width:45%;
+    display:flex;
+    justify-content:center;
+}
+
+.iniimg img{
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    border:15px solid #8bc34a;
+    object-fit:cover;
+}
+
+/* PRODUCTOS */
+
+.productos{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    padding:50px;
+    flex-wrap:wrap;
+}
+
+.tarjeta{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.tarjeta img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:8px solid #8bc34a;
+    object-fit:cover;
+}
+
+.tarjeta h3{
+    margin-top:15px;
+}
+
+.tarjeta p{
+    margin-top:10px;
+    color:gray;
+    font-size:14px;
+}
+
+.precio-boton{
+     display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bprecio{
+    margin-top: 10px;
+    padding:5px 15px;
+    border-radius:30px;
+    border:1px solid #999;
+    background:white;
+    cursor:pointer;
+  
+}
+
+
+
+.bcomprar{
+  margin-top: 10px;
+  margin-left: 20px;
+  padding:5px 15px;
+  background-color: #93c572;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.bcomprar:hover {
+  background-color: #689b62e7;
+  
+}
+
+.porque{
+    padding:100px 60px;
+    text-align:center;
+}
+
+.porque h2{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.texto-porque{
+    color:gray;
+    margin-bottom:50px;
+}
+
+.contenedor-servicios{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.servicio{
+    width:320px;
+    background:white;
+    padding:40px 25px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.servicio img{
+    font-size:40px;
+    margin-bottom:15px;
+    width: 50px;
+    height: 50px;
+}
+
+.servicio h4{
+    margin-bottom:15px;
+}
+
+.servicio p{
+    color:gray;
+    line-height:25px;
+}
+
+</style>
+
+</head>
+<body>
+
+    <header class="encabezado">
+    <div class="comida">
+        <h1>Foodied</h1>
+    </div>
+    
+    <nav class="menu-navegacion">
+        <a href="#">inicio</a>
+        <a href="#">menu</a>
+        <a href="#">sobre nosotros</a>
+        <a href="#">contacto</a>
+    </nav>
+
+    <div class="botones">
+         <button class="lupa"><img src="https://static.vecteezy.com/system/resources/previews/009/589/567/non_2x/magnifying-icon-magnifying-clipart-transparent-free-png.png" alt="lupa"></button>
+         <button class="maleta"><img src="https://images.icon-icons.com/2582/PNG/512/shopping_bag_icon_153983.png" alt="maleta"></button>
+         <button class="registro">Registrarse</button>
+
+    </div>
+
+</header>
+    
+<section class="inicio">
+
+        <div class="iniletras">
+
+            <button class="hambre">
+                ¿Tienes hambre?
+            </button>
+
+            <h1>
+                SOLO VEN A FOODIED Y ORDENA
+            </h1>
+
+            <p>
+                Disfruta comida deliciosa preparada con ingredientes frescos.
+                Tenemos una gran variedad de platos para todos los gustos.
+            </p>
+
+            <div class="botones">
+
+                <button class="orden">
+                    Ordenar ahora
+                </button>
+
+                <button class="explora">
+                    Explorar más →
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="iniimg">
+
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="ensalada">
+
+        </div>
+
+    </section>
+
+  
+
+    <section class="productos">
+
+        <div class="tarjeta">
+
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300" alt="Hamburguesa">
+
+            <h3>Hamburguesa de Pollo</h3>
+
+            <p>
+                Deliciosa hamburguesa preparada con ingredientes frescos.
+            </p>
+
+            <div class="precio-boton">
+
+                <button class="bprecio">
+                    $3.50
+                </button>
+
+
+                <button class="bcomprar">
+                    Comprar aquí
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="tarjeta">
+
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" alt="Pizza">
+
+            <h3>Pizza de Pollo</h3>
+
+            <p>
+                Pizza elaborada con queso, pollo y vegetales frescos.
+            </p>
+
+            <div class="precio-boton">
+
+                  <button class="bprecio">
+                    $3.50
+                </button>
+
+
+                <button class="bcomprar">
+                    Comprar aquí
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="tarjeta">
+
+            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300" alt="Arroz">
+
+            <h3>Arroz con Pollo</h3>
+
+            <p>
+                Arroz acompañado con pollo y vegetales saludables.
+            </p>
+
+            <div class="precio-boton">
+
+                  <button class="bprecio">
+                    $4.50
+                </button>
+
+
+                <button class="bcomprar">
+                    Comprar aquí
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="tarjeta">
+
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=300" alt="Postre">
+
+            <h3>Postre Especial</h3>
+
+            <p>
+                Dulce especial preparado para disfrutar después de tu comida.
+            </p>
+
+            <div class="precio-boton">
+
+                  <button class="bprecio">
+                    $3.50
+                </button>
+
+
+                <button class="bcomprar">
+                    Comprar aquí
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="porque">
+
+        <h2>¿POR QUÉ ELEGIRNOS?</h2>
+
+        <p class="texto-porque">
+            Ofrecemos alimentos saludables, excelente calidad y entregas rápidas.
+        </p>
+
+        <div class="contenedor-servicios">
+
+            <div class="servicio">
+
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNZG9Fjf14u7WiPxUvOqhV1UC9bbWm4ux2nA&s" alt="comida">
+
+                <h4>Comida Saludable</h4>
+
+                <p>
+                    Servimos alimentos preparados con ingredientes frescos y saludables.
+                </p>
+
+            </div>
+
+            <div class="servicio">
+
+                <img src="https://img.magnific.com/vector-gratis/corazon-verde-contorno-hoja_78370-2745.jpg?semt=ais_hybrid&w=740&q=80" alt="calidad">
+
+                <h4>La Mejor Calidad</h4>
+
+                <p>
+                    Nuestros productos son elaborados con altos estándares de calidad.
+                </p>
+
+            </div>
+
+            <div class="servicio">
+
+                <img src="https://thumbs.dreamstime.com/b/icono-de-cami%C3%B3n-entrega-s%C3%ADmbolo-transporte-verde-para-necesidades-log%C3%ADstica-y-env%C3%ADo-423318587.jpg" alt="carro">
+
+                <h4>Entrega Rápida</h4>
+
+                <p>
+                    Llevamos tus pedidos de manera rápida y segura.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>
