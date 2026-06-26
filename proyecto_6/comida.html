@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodied - Comidas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        .encabezado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            color: black; 
+            position: relative;
+            z-index: 10;
+        }
+
+        .comida h1 {
+            font-size: 28px;
+        }
+
+        .menu-navegacion a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+        }
+
+        .menu-navegacion a:hover {
+            text-decoration: underline;
+        }
+
+        .botones {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lupa, .maleta {
+            border: none;
+            background-color: white;
+            padding: 6px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .lupa img, .maleta img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lupa:hover, .maleta:hover {
+            background-color: #f0ebeb;
+        }
+
+        .registro {
+            padding: 10px 25px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .registro:hover {
+            background-color: #f0ebeb;
+            text-decoration: underline;
+        }
+
+        /* --- CONTENEDOR DE BIENVENIDA --- */
+        .inicio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 80px 100px 80px;
+            position: relative;
+            min-height: 550px;
+        }
+
+        .iniletras {
+            width: 45%;
+            z-index: 5;
+        }
+
+        .hambre {
+            padding: 8px 18px;
+            background-color: white;
+            color: black;
+            font-size: 13px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .iniletras h1 {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .iniletras p {
+            color: gray;
+            line-height: 26px;
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .botones-accion {
+            display: flex;
+            gap: 15px;
+        }
+
+        .orden {
+            padding: 15px 35px;
+            background-color: #8bc34a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .orden:hover {
+            background-color: #7cb342;
+        }
+
+        .explora {
+            padding: 15px 35px;
+            background-color: white;
+            color: black;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .explora:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* --- CONTENEDOR DERECHO (FORMAS Y PLATOS) --- */
+        .iniimg {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* SUS DOS FORMAS VERDES ORIGINALES RESPETADAS AL 100% */
+        .forma-verde {
+            position: absolute;
+            top: -450px;
+            right: 200px;
+            width: 700px;
+            height: 690px;
+            background-color: #8bc34a;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .forma2 {
+            position: absolute;
+            top: -200px;
+            right: -130px;
+            width: 750px;
+            height: 620px;
+            background-color: #8bc34a;
+            border-radius: 50%;
+            z-index: -2;
+        }
+
+        .img-contenedor {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 120px;
+        }
+
+        .img-principal {
+            width: 335px;
+            height: 335px;
+            border-radius: 50%;
+            border: 15px solid #558b2f;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .img-flotante {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .f1 { top: 145px; right: -55px; }
+        .f2 { top: 160px; left: -55px; }
+        .f3 { bottom: 5px; left: -15px; }
+        .f4 { bottom: -55px; left: 140px; }
+        .f5 { bottom: 10px; right: -30px; }
+
+        /* --- SECCIÓN PRODUCTOS --- */
+        .productos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 60px 40px;
+            flex-wrap: wrap;
+            background-color: #fafafa;
+        }
+
+        .tarjeta {
+            width: 260px;
+            background: white;
+            padding: 25px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .tarjeta img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid #8bc34a;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .tarjeta p {
+            margin-bottom: 20px;
+            color: gray;
+            font-size: 14px;
+            line-height: 20px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .precio-boton {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .bprecio {
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            background: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .bcomprar {
+            padding: 8px 16px;
+            background-color: #8bc34a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .bcomprar:hover {
+            background-color: #7cb342;
+        }
+
+        /* --- SECCIÓN POR QUÉ --- */
+        .porque {
+            padding: 8px 40px 80px 40px;
+            text-align: center;
+        }
+
+        .porque h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .texto-porque {
+            color: gray;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        .contenedor-servicios {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .servicio {
+            width: 310px;
+            background: white;
+            padding: 40px 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+        }
+
+        .servicio img {
+            margin-bottom: 20px;
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .servicio h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .servicio p {
+            color: gray;
+            line-height: 24px;
+            font-size: 14px;
+        }
+
+        /* --- RESPONSIVO PARA TABLETAS --- */
+        @media (max-width: 1200px) {
+            .forma-verde {
+                right: 150px;
+            }
+            .img-contenedor {
+                margin-right: 0px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .encabezado {
+                padding: 20px 40px;
+            }
+            .inicio {
+                padding: 40px 40px 60px 40px;
+            }
+            .iniletras h1 {
+                font-size: 40px;
+            }
+            .forma-verde {
+                width: 550px;
+                height: 520px;
+                top: -300px;
+                right: 100px;
+            }
+            .forma2 {
+                width: 520px;
+                height: 450px;
+                top: -150px;
+                right: -100px;
+            }
+            .img-contenedor {
+                width: 300px;
+                height: 300px;
+                margin-right: 0px;
+            }
+            .img-principal {
+                width: 260px;
+                height: 260px;
+                border-width: 10px;
+            }
+            .img-flotante {
+                width: 55px;
+                height: 55px;
+            }
+            .f1 { top: 110px; right: -35px; }
+            .f2 { top: 120px; left: -35px; }
+            .f3 { bottom: 10px; left: -10px; }
+            .f4 { bottom: -25px; left: 110px; }
+            .f5 { bottom: 15px; right: -15px; }
+        }
+
+        @media (max-width: 750px) {
+         
+            .forma2 {
+                display: none; 
+            }
+            .forma-verde {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 5px;
+                border-radius: 0; 
+                z-index: 100; 
+            }
+
+            .encabezado {
+                flex-direction: column;
+                gap: 15px;
+                padding: 25px 20px 20px 20px;
+                text-align: center;
+            }
+            .menu-navegacion {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .menu-navegacion a {
+                margin: 0 10px;
+            }
+            .inicio {
+                flex-direction: column-reverse;
+                padding: 20px;
+                text-align: center;
+                gap: 40px;
+            }
+            .iniletras {
+                width: 100%;
+            }
+            .botones-accion {
+                justify-content: center;
+            }
+            .iniimg {
+                width: 100%;
+            }
+            .img-contenedor {
+                width: 290px;
+                height: 290px;
+                margin-right: 0px;
+            }
+            .img-principal {
+                width: 225px;
+                height: 225px;
+            }
+            .img-flotante {
+                width: 50px;
+                height: 50px;
+            }
+            .f1 { top: 90px; right: -25px; }
+            .f2 { top: 100px; left: -25px; }
+            .f3 { bottom: 10px; left: -5px; }
+            .f4 { bottom: -20px; left: 95px; }
+            .f5 { bottom: 15px; right: -10px; }
+            
+            .porque h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="forma-verde"></div>
+    <div class="forma2"></div>
+
+    <header class="encabezado">
+        <div class="comida">
+            <h1>Foodied</h1>
+        </div>
+        
+        <nav class="menu-navegacion">
+            <a href="#">inicio</a>
+            <a href="#">menu</a>
+            <a href="#">sobre nosotros</a>
+            <a href="#">contacto</a>
+        </nav>
+
+        <div class="botones">
+             <button class="lupa"><img src="https://static.vecteezy.com/system/resources/previews/009/589/567/non_2x/magnifying-icon-magnifying-clipart-transparent-free-png.png" alt="lupa"></button>
+             <button class="maleta"><img src="https://images.icon-icons.com/2582/PNG/512/shopping_bag_icon_153983.png" alt="maleta"></button>
+             <button class="registro">Registrarse</button>
+        </div>
+    </header>
+    
+    <section class="inicio">
+        <div class="iniletras">
+            <button class="hambre">
+                ¿Tienes hambre?
+            </button>
+            <h1>
+                SOLO VEN A FOODIED Y ORDENA
+            </h1>
+            <p>
+                Disfruta comida deliciosa preparada con ingredientes frescos.
+                Tenemos una gran variedad de platos para todos los gustos.
+            </p>
+            <div class="botones-accion">
+                <button class="orden">
+                    Ordenar ahora
+                </button>
+                <button class="explora">
+                    Explorar más →
+                </button>
+            </div>
+        </div>
+
+        <div class="iniimg">
+            <div class="img-contenedor">
+                <img src="https://i.pinimg.com/originals/82/1a/ac/821aac8e46f1c64d0f0c8b03595d1a56.jpg" alt="ensalada" class="img-principal">
+                <img src="https://comedera.com/wp-content/uploads/sites/9/2023/07/Hamburguesa-de-pollo-picante.jpg" alt="mini1" class="img-flotante f1">
+                <img src="https://storage.googleapis.com/fitia_recipe_images/GR-R-V-00004594%2Fv3%2Frect.jpeg" alt="mini2" class="img-flotante f2">
+                <img src="https://www.budgetbytes.com/wp-content/uploads/2022/07/Arroz-Con-Pollo-plate.jpg" alt="mini3" class="img-flotante f3">
+                <img src="https://thumbs.dreamstime.com/b/pastel-de-mousse-chocolate-decenal-con-bayas-y-menta-fresca-elegante-una-helada-frescas-frambuesa-fresa-adornada-hojas-se-sienta-395599341.jpg" alt="mini4" class="img-flotante f4">
+                <img src="https://nutrasoporte.com/assets/img/DEMO_RECETAS/jugodemaracuya.jpg" alt="mini5" class="img-flotante f5">
+            </div>
+        </div>
+    </section>
+
+    <section class="productos">
+        <div class="tarjeta">
+            <img src="https://comedera.com/wp-content/uploads/sites/9/2023/07/Hamburguesa-de-pollo-picante.jpg" alt="Hamburguesa">
+            <h3>Hamburguesa de Pollo</h3>
+            <p>Deliciosa hamburguesa preparada con ingredientes frescos.</p>
+            <div class="precio-boton">
+                <button class="bprecio">$3.50</button>
+                <button class="bcomprar">Comprar aquí</button>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://storage.googleapis.com/fitia_recipe_images/GR-R-V-00004594%2Fv3%2Frect.jpeg" alt="Pizza">
+            <h3>Pizza de Pollo</h3>
+            <p>Pizza de pollo elite elaborada con queso y vegetales.</p>
+            <div class="precio-boton">
+                <button class="bprecio">$3.50</button>
+                <button class="bcomprar">Comprar aquí</button>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://www.budgetbytes.com/wp-content/uploads/2022/07/Arroz-Con-Pollo-plate.jpg" alt="Arroz">
+            <h3>Arroz con Pollo</h3>
+            <p>Arroz acompañado con pollo y vegetales saludables.</p>
+            <div class="precio-boton">
+                <button class="bprecio">$4.50</button>
+                <button class="bcomprar">Comprar aquí</button>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <img src="https://thumbs.dreamstime.com/b/pastel-de-mousse-chocolate-decenal-con-bayas-y-menta-fresca-elegante-una-helada-frescas-frambuesa-fresa-adornada-hojas-se-sienta-395599341.jpg" alt="Postre">
+            <h3>Postre Especial</h3>
+            <p>Dulce especial preparado para disfrutar después.</p>
+            <div class="precio-boton">
+                <button class="bprecio">$3.50</button>
+                <button class="bcomprar">Comprar aquí</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="porque">
+        <h2>¿POR QUÉ ELEGIRNOS?</h2>
+        <p class="texto-porque">Ofrecemos alimentos saludables, excelente calidad y entregas rápidas.</p>
+
+        <div class="contenedor-servicios">
+            <div class="servicio">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNZG9Fjf14u7WiPxUvOqhV1UC9bbWm4ux2nA&s" alt="comida">
+                <h4>Comida Saludable</h4>
+                <p>Servimos alimentos preparados con ingredientes frescos y saludables.</p>
+            </div>
+
+            <div class="servicio">
+                <img src="https://img.magnific.com/vector-gratis/corazon-verde-contorno-hoja_78370-2745.jpg?semt=ais_hybrid&w=740&q=80" alt="calidad">
+                <h4>La Mejor Calidad</h4>
+                <p>Nuestros productos son elaborados con altos estándares de calidad.</p>
+            </div>
+
+            <div class="servicio">
+                <img src="https://thumbs.dreamstime.com/b/icono-de-cami%C3%B3n-entrega-s%C3%ADmbolo-transporte-verde-para-necesidades-log%C3%ADstica-y-env%C3%ADo-423318587.jpg" alt="carro">
+                <h4>Entrega Rápida</h4>
+                <p>Llevamos tus pedidos de manera rápida y segura desde nuestra cocina.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
