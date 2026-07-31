@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="text" class="caja">
+        <input type="text" class="caja2"><br><br>
+        <label for="">Suma</label>
+        <input type="radio" name="o" id="op1">
+        <label for="">Resta</label>
+        <input type="radio" name="o" id="op2">
+        <label for="">Multiplicacion</label>
+        <input type="radio" name="o" id="op3">
+        <label for="">Division</label>
+        <input type="radio" name="o" id="op4"><br>
+        <button onclick="operacion()">Boton</button>
+        <h1>resultado</h1>
+    </div>
+
+    <script>
+
+       function operacion() {
+    let n1 = document.querySelector(".caja")
+    let n2 = document.querySelector(".caja2")
+    let r = document.querySelector("h1")
+
+    // Convertimos los valores a números para validar
+    let num1 = parseFloat(n1.value);
+    let num2 = parseFloat(n2.value);
+
+    // Validamos: si cualquiera de los dos no es un número, mostramos alerta
+    if (isNaN(num1) || isNaN(num2)) {
+        alert("Por favor, ingresa solo números válidos");
+        return; // Salimos de la función para no seguir ejecutando
+    }
+
+    // Si pasamos la validación, procedemos con las operaciones
+    let res = 0;
+
+    if (document.getElementById("op1").checked) {
+        res = num1 + num2;
+    } else if (document.getElementById("op2").checked) {
+        res = num1 - num2;
+    } else if (document.getElementById("op3").checked) {
+        res = num1 * num2;
+    } else if (document.getElementById("op4").checked) {
+        if (num2 === 0) {
+            alert("No se puede dividir por 0");
+            return;
+        }
+        res = num1 / num2;
+    } else {
+        alert("Por favor seleccione una operacion");
+        return;
+    }
+
+    r.textContent = "Resultado: " + res;
+}
+
+
+
+
+
+
+
+
+       /*  function sumar() {
+            let n1 = document.querySelector(".caja")
+            let n2 = document.querySelector(".caja2")
+            let r = document.querySelector("h1")
+
+            let res = 0
+
+            res = parseInt(n1.value) + parseInt(n2.value)
+
+            r.textContent = res
+
+        } */
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <div>
+        <label>Usuario</label>
+        <input type="text" class="usuario"><br><br>
+
+        <label>Contraseña</label>
+        <input type="password" class="clave"><br><br>
+
+        <button onclick="ingresar()">Ingresar</button>
+
+        <h2 class="mensaje"></h2>
+    </div>
+
+    <script>
+
+        function ingresar(){
+
+            let usuario = document.querySelector(".usuario");
+            let clave = document.querySelector(".clave");
+            let mensaje = document.querySelector(".mensaje");
+
+          
+            mensaje.classList.remove("naranja");
+            mensaje.classList.remove("rojo");
+            mensaje.classList.remove("verde");
+
+            
+            if(usuario.value == "" || clave.value == ""){
+                mensaje.textContent = "Complete los datos";
+
+                
+                mensaje.classList.add("naranja");
+            }
+
+           
+            else if(usuario.value != "cris" || clave.value != "1234"){
+                mensaje.textContent = "Credenciales invalidas";
+                mensaje.classList.add("rojo");
+            }
+
+            
+            else{
+                mensaje.textContent = "Bienvenido estimado usuario";
+                mensaje.classList.add("verde");
+            }
+
+        }
+
+    </script>
+
+    <style>
+
+        .naranja{
+            color: orange;
+        }
+
+        .rojo{
+            color: red;
+        }
+
+        .verde{
+            color: green;
+        }
+
+    </style>
+
+</body>
+</html>
